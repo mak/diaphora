@@ -28,7 +28,7 @@ import sqlite3
 import threading
 
 from threading import Thread
-from io import StringIO
+from StringIO import StringIO
 from difflib import SequenceMatcher
 from multiprocessing import cpu_count
 
@@ -632,7 +632,7 @@ class CBinDiff:
       if type(prop) is int and (prop > 0xFFFFFFFF or prop < -0xFFFFFFFF):
         prop = str(prop)
       elif type(prop) is bytes:
-        prop = prop.encode("utf-8")
+        prop = prop #prop.encode("utf-8")
 
       if type(prop) is list or type(prop) is set:
         new_props.append(json.dumps(list(prop), ensure_ascii=False, cls=bytes_encoder))

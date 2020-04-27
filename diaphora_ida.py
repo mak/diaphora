@@ -1660,7 +1660,7 @@ or selecting Edit -> Plugins -> Diaphora - Show results""")
           continue
 
         bytes_hash.append(curr_bytes)
-        bytes_sum += sum(curr_bytes)
+        bytes_sum += sum(bytearray(curr_bytes))
 
         function_hash.append(get_bytes(x, get_item_size(x), False))
         outdegree += len(list(CodeRefsFrom(x, 0)))
@@ -1856,9 +1856,9 @@ or selecting Edit -> Plugins -> Diaphora - Show results""")
 
     try:
       clean_assembly = self.get_cmp_asm_lines(asm)
-    except:
+    except Exception as e:
       clean_assembly = ""
-      print("Error getting assembly for 0x%x" % f)
+      print("Error getting assembly for 0x%x - %s" % (f,repr(e)))
 
     clean_pseudo = self.get_cmp_pseudo_lines(pseudo)
 
@@ -1892,7 +1892,7 @@ or selecting Edit -> Plugins -> Diaphora - Show results""")
              proto, cc, prime, f, comment, true_name, bytes_hash, pseudo, pseudo_lines,
              pseudo_hash1, pseudocode_primes, function_flags, asm, proto2,
              pseudo_hash2, pseudo_hash3, len(strongly_connected), loops, rva, bb_topological,
-             strongly_connected_spp, clean_assembly, clean_pseudo, mnemonics_spp, switches,
+             strongly_connected_spp, clean_assembly, clean_pseudo, str(mnemonics_spp), switches,
              function_hash, bytes_sum, md_index, constants, len(constants), seg_rva,
              assembly_addrs, kgh_hash, None,
              callers, callees,

@@ -150,8 +150,9 @@ class CKoretFuzzyHashing:
                 break
 
         ret = "".join(buf)
-        bret = ret.encode()
-        return base64.b64encode(bret).strip(b"=")[:output_size]
+        #bret = ret.encode()
+#        return base64.b64encode(bret).strip(b"=")[:output_size]
+        return base64.b64encode(ret).strip("=")[:output_size]
 
     def _fast_hash(self, bytes, aggresive = False):
         i = -1
